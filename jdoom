@@ -1,7 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
-   jdoom: Test the operator on calculating day of the week,
-          based on Conway's Doomsday algorithm.
+   jdoom: Prsent a quiz on calculating the day of the week
+          for randomly selected dates using Conway's 
+          Doomsday algorithm.
 
    Usage: 
       jdoom [-a=DATE] [-b=DATE] [-t] quiz
@@ -10,8 +11,10 @@
       jdoom -V | --version
 
    Options:
-      -a, --after=DATE    Show only dates after DATE [default: 1800-01-01]
-      -b, --before=DATE   Show only dates before DATE [default: 2199-12-31]
+      -a, --after=DATE    Show only dates after DATE 
+                          [default: 1800-01-01]
+      -b, --before=DATE   Show only dates before DATE 
+                          [default: 2199-12-31]
       -t, --timer         Show how long user needed to compute answer
       -v, --verbose       Display verbose output
 
@@ -21,10 +24,11 @@
 import random
 import time
 import datetime
-from docopt import docopt
+#from docopt import docopt
+from docoptcfg import docoptcfg
 
 # process command line args
-args = docopt(__doc__, version='jdoom version 0.0.1')
+args = docoptcfg(__doc__, env_prefix='JDOOM_', version='jdoom version 0.0.1')
 # print args
 
 dow_names = {0:'Sun', 1:'Mon', 2:'Tue', 3:'Wed', 4:'Thu', 5:'Fri', 6:'Sat'}
@@ -103,10 +107,11 @@ def run_quiz_loop(after_date, before_date):
             pass
         if answer == None:
             continue
+        answer = int(answer)
         answertime = time.time()
         if answer < 0:
             exit()
-        if int(answer) == weekday:
+        if answer == weekday:
             if args['--timer']:
                 print("Correct.\n(%0.1f sec)"%(answertime-showtime))
             else:
@@ -124,7 +129,7 @@ if __name__ == "__main__":
     print("What about docopt docoptcfg for default values?")
     if args['explain']:
         target_date = datetime.datetime.strptime(args['DATE'], "%Y-%m-%d").date()
-        after_date = datetime.date(1800, 01, 01).toordinal()
+        after_date = datetime.date(1800, 1, 1).toordinal()
         weekday =  weekday_of_year_in_doomsday_format(target_date)
         print("The correct answer is %d" % weekday)
         explain_doomsday_for_date(target_date)
