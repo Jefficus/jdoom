@@ -96,18 +96,24 @@ def run_quiz_loop(after_date, before_date):
         target_date = datetime.date.fromordinal(random.randint(after, before))
         weekday =  weekday_of_year_in_doomsday_format(target_date)
         showtime = time.time()
-        answer = input("%s: " % target_date.isoformat()[:10])
+        answer = None
+        try:
+            answer = input("%s: " % target_date.isoformat()[:10])
+        except:
+            pass
+        if answer == None:
+            continue
         answertime = time.time()
         if answer < 0:
             exit()
         if int(answer) == weekday:
             if args['--timer']:
-                print("Correct. (in %0.1f sec)"%(answertime-showtime))
+                print("Correct.\n(%0.1f sec)"%(answertime-showtime))
             else:
                 print("Correct.")
         else:
             if args['--timer']:
-                print("Wrong. (in %0.1f sec)"%(answertime-showtime))
+                print("Wrong.\n(in %0.1f sec)"%(answertime-showtime))
             else:
                 print("Wrong.")
             print("  The correct answer is %d" % weekday)
