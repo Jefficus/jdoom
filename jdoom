@@ -15,7 +15,7 @@
                           [default: 1800-01-01]
       -b, --before=DATE   Show only dates before DATE 
                           [default: 2199-12-31]
-      -t, --timer         Show how long user needed to compute answer
+      -t, --timer         Do not show how long user needed to compute answer
       -v, --verbose       Display verbose output
 
    Created 2018 by Jefferson Smith <jefferson@smithicus.com>
@@ -112,12 +112,12 @@ def run_quiz_loop(after_date, before_date):
         if answer < 0:
             exit()
         if answer == weekday:
-            if args['--timer']:
+            if not args['--timer']:
                 print("Correct.\n(%0.1f sec)"%(answertime-showtime))
             else:
                 print("Correct.")
         else:
-            if args['--timer']:
+            if not args['--timer']:
                 print("Wrong.\n(in %0.1f sec)"%(answertime-showtime))
             else:
                 print("Wrong.")
