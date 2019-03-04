@@ -105,7 +105,13 @@ def run_quiz_loop(after_date, before_date):
         showtime = time.time()
         answer = None
         try:
-            answer = input("%s: " % target_date.isoformat()[:10])
+            response = input("%s: " % target_date.isoformat()[:10])
+            # I like to enter each of the components of the calculation,
+            # followed by the final answer, so that I can see my thinking on
+            # the previous line when I make a mistake. Consequently, this line
+            # takes all that input and then ignores everything but the last
+            # component.
+            answer = response.split()[-1]
         except:
             pass
         if answer == None:
