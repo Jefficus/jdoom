@@ -93,7 +93,7 @@ def explain_doomsday_for_date(somedate):
 
 
 def run_quiz_loop(after_date, before_date):
-    print("Enter a negative value to quit.\n")
+    print("Enter 'q' to quit.\n")
     print("Using 0 for Sunday, 1 for Monday, etc., enter the day of the week for each date.")
 
     after = after_date.toordinal()
@@ -110,10 +110,10 @@ def run_quiz_loop(after_date, before_date):
             pass
         if answer == None:
             continue
+        if answer in 'qQxX':
+            exit()
         answer = int(answer)
         answertime = time.time()
-        if answer < 0:
-            exit()
         if answer == weekday:
             if not args['--no-time']:
                 print("Correct.\n(%0.1f sec)"%(answertime-showtime))
@@ -129,7 +129,6 @@ def run_quiz_loop(after_date, before_date):
         print('')
 
 if __name__ == "__main__":
-    print("What about docopt docoptcfg for default values?")
     if args['explain']:
         target_date = datetime.datetime.strptime(args['DATE'], "%Y-%m-%d").date()
         after_date = datetime.date(1800, 1, 1).toordinal()
