@@ -36,6 +36,8 @@ args = docoptcfg(__doc__, env_prefix='JDOOM_', config_option='--config', version
 
 dow_names = {0:'Sun', 1:'Mon', 2:'Tue', 3:'Wed', 4:'Thu', 5:'Fri', 6:'Sat'}
 
+date_formats = ["%b %d %Y", "%Y-%m-%d", "%m/%d/%Y", "%B %d, %Y"]
+
 def anchor_day_for_century(somedate):
     # 1800=5, 1900=3, 2000=2 2100=0
     # so 18=5, 19=3, 20=2 and 21=0
@@ -105,7 +107,9 @@ def run_quiz_loop(after_date, before_date):
         showtime = time.time()
         answer = None
         try:
-            response = input("%s: " % target_date.isoformat()[:10])
+            #dstr = target_date.isoformat()[:10]
+            dstr = target_date.strftime( random.choice(date_formats) )
+            response = input("%s: " % dstr)
             # I like to enter each of the components of the calculation,
             # followed by the final answer, so that I can see my thinking on
             # the previous line when I make a mistake. Consequently, this line
