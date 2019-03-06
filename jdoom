@@ -5,7 +5,7 @@
           Doomsday algorithm.
 
    Usage: 
-      jdoom [options] quiz
+      jdoom [options] [quiz]
       jdoom [options] explain DATE
       jdoom -h | --help
       jdoom -V | --version
@@ -146,7 +146,7 @@ if __name__ == "__main__":
         print("The correct answer is %d" % weekday)
         explain_doomsday_for_date(target_date)
 
-    if args['quiz']:
+    if args['quiz'] or not args['explain']:
         # after_date = datetime.date(1800, 01, 01).toordinal()
         # before_date = datetime.date(2199, 12, 31).toordinal()
         after_date = datetime.datetime.strptime(args['--after'], "%Y-%m-%d").date()
