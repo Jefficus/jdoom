@@ -120,7 +120,7 @@ def run_quiz_loop(after_date, before_date):
             pass
         if answer == None:
             continue
-        if answer in 'qQxX':
+        if answer.strip()[0] in 'qQxX':
             exit()
         answer = int(answer)
         answertime = time.time()
