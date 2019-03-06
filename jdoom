@@ -17,7 +17,9 @@
                           [default: 2199-12-31]
       -c, --config=PATH   Take run-time options from config file
                           [default: /home/jeffs/.jdoomrc]
-      -n, --no-time       Do not show how long user needed to compute answer
+      -n, --num-dates=N   Number of questions in the quiz.
+                          Enter 0 for unlimited. [default: 3]
+      -u, --untimed       Do not show how long user needed to compute answer
       -v, --verbose       Display verbose output
 
    Created 2018 by Jefferson Smith <jefferson@smithicus.com>
@@ -94,14 +96,16 @@ def explain_doomsday_for_date(somedate):
     print("  Anchor offset for that monthday is: %d" % doomsday_offset_for_day(somedate))
 
 
-def run_quiz_loop(after_date, before_date):
+def run_quiz_loop(after_date, before_date, num):
     print("Enter 'q' to quit.\n")
     print("Using 0 for Sunday, 1 for Monday, etc., enter the day of the week for each date.")
 
     after = after_date.toordinal()
     before = before_date.toordinal()
 
-    while True:
+    i = 0
+    while num == 0 or i < num:
+        i += 1
         target_date = datetime.date.fromordinal(random.randint(after, before))
         weekday =  weekday_of_year_in_doomsday_format(target_date)
         showtime = time.time()
@@ -125,12 +129,12 @@ def run_quiz_loop(after_date, before_date):
         answer = int(answer)
         answertime = time.time()
         if answer == weekday:
-            if not args['--no-time']:
+            if not args['--untimed']:
                 print("Correct.\n(%0.1f sec)"%(answertime-showtime))
             else:
                 print("Correct.")
         else:
-            if not args['--no-time']:
+            if not args['--untimed']:
                 print("Wrong.\n(in %0.1f sec)"%(answertime-showtime))
             else:
                 print("Wrong.")
@@ -151,6 +155,7 @@ if __name__ == "__main__":
         # before_date = datetime.date(2199, 12, 31).toordinal()
         after_date = datetime.datetime.strptime(args['--after'], "%Y-%m-%d").date()
         before_date = datetime.datetime.strptime(args['--before'], "%Y-%m-%d").date()
-        run_quiz_loop(after_date, before_date)
+        num_dates = int(args['--num-dates'])
+        run_quiz_loop(after_date, before_date, num_dates)
 
 
