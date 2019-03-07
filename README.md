@@ -23,7 +23,7 @@
     Created 2019 by fantasy author Jefferson Smith (https://creativityhacker.ca)
 
 ## Caveat
-    This is not a tutorial. You'll have to learn the Doomsday algorithm [somewhere else](https://www.timeanddate.com/date/doomsday-weekday.html). That's too much like work. We're just here to do the fun part.
+This is not a tutorial. You'll have to learn the Doomsday algorithm [somewhere else](https://www.timeanddate.com/date/doomsday-weekday.html). That's too much like work. We're just here to do the fun part.
 
 ## Example Session
     Enter 'q' to quit.
@@ -39,16 +39,16 @@
     Correct
     (11.9 sec)
 
-	1872-09-19: 1
-	Wrong (3.0 sec)
-		The correct answer is 4
-		Doomsday for the year was: 5 6 0 0 = 4
-		Anchor date for the month is: Sep 5
-		Given date is offset from anchor day by: 0
-		So anchor date is always a Doomsday (= 4) offset by 0 = 4
+    1872-09-19: 1
+    Wrong (3.0 sec)
+        The correct answer is 4
+        Doomsday for the year was: 5 6 0 0 = 4
+        Anchor date for the month is: Sep 5
+        Given date is offset from anchor day by: 0
+        So anchor date is always a Doomsday (= 4) offset by 0 = 4
 
 Notice that the date prompts are not always in the same format. This keeps you more nimble and able to handle the dates regardless of how they're thrown at you.
 
 ## Dependencies
 
-    Requires the *docoptcfg* package that provides easy arg-parsing, up-to-date --help text, local .config files, and environment variable overrides. All for the price of writing a proper help text.
+*docoptcfg*: Requires this wonderful package that provides easy arg-parsing, guaranteed up-to-date --help text, local .config files, and environment variable overrides. All for the price of writing a proper help text.
