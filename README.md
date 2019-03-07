@@ -1,4 +1,4 @@
-#jdoom
+# jdoom
 
     A simple command-line Python script to generate random dates and test you on your ability to compute the day-of-the-week using John Conway's Doomsday Algorithm.
 
@@ -22,10 +22,10 @@
 
     Created 2019 by fantasy author Jefferson Smith (https://creativityhacker.ca)
 
-##Caveat
-    This is not a tutorial. You'll have to learn the Doomsday algorithm [somewhere else](). That's too much like work. We're just here to do the fun part.
+## Caveat
+    This is not a tutorial. You'll have to learn the Doomsday algorithm [somewhere else](https://www.timeanddate.com/date/doomsday-weekday.html). That's too much like work. We're just here to do the fun part.
 
-##Example Session
+## Example Session
     Enter 'q' to quit.
 
     Enter the day of the week for each given date.
@@ -47,8 +47,8 @@
 		Given date is offset from anchor day by: 0
 		So anchor date is always a Doomsday (= 4) offset by 0 = 4
 
-Notice that the date prompts are not always in the same format. 
+Notice that the date prompts are not always in the same format. This keeps you more nimble and able to handle the dates regardless of how they're thrown at you.
 
-##Dependencies
+## Dependencies
 
     Requires the *docoptcfg* package that provides easy arg-parsing, up-to-date --help text, local .config files, and environment variable overrides. All for the price of writing a proper help text.
