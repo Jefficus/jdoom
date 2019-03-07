@@ -1,6 +1,6 @@
 # jdoom
 
-    A simple command-line Python script to generate random dates and test you on your ability to compute the day-of-the-week using John Conway's Doomsday Algorithm.
+A simple command-line Python script to generate random dates and test you on your ability to compute the day-of-the-week using John Conway's Doomsday Algorithm.
 
     Usage: 
         jdoom [options] [quiz]
@@ -14,13 +14,13 @@
         -b, --before=DATE   Show only dates before DATE 
                             [default: 2199-12-31]
         -c, --config=PATH   Take run-time options from config file
-                            [default: /home/jeffs/.jdoomrc]
+                            [default: $HOME/.jdoomrc]
         -n, --num-dates=N   Number of questions in the quiz.
                             Enter 0 for unlimited. [default: 3]
         -u, --untimed       Do not show how long user needed to compute answer
         -v, --verbose       Display verbose output
 
-    Created 2019 by fantasy author Jefferson Smith (https://creativityhacker.ca)
+    Created 2019 by fantasy author [Jefferson Smith](https://creativityhacker.ca)
 
 ## Caveat
 This is not a tutorial. You'll have to learn the Doomsday algorithm [somewhere else](https://www.timeanddate.com/date/doomsday-weekday.html). That's too much like work. We're just here to do the fun part.
