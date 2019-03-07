@@ -1,28 +1,29 @@
 #!/usr/bin/env python3
 """
-   jdoom: Prsent a quiz on calculating the day of the week
-          for randomly selected dates using Conway's 
-          Doomsday algorithm.
+jdoom: A simple command-line Python script to generate random 
+       dates and test you on your ability to compute the 
+       day-of-the-week using John Conway's Doomsday Algorithm.
 
-   Usage: 
-      jdoom [options] [quiz]
-      jdoom [options] explain DATE
-      jdoom -h | --help
-      jdoom -V | --version
+Usage: 
+    jdoom [options] [quiz]
+    jdoom [options] explain DATE
+    jdoom -h | --help
+    jdoom -V | --version
 
-   Options:
-      -a, --after=DATE    Show only dates after DATE 
-                          [default: 1800-01-01]
-      -b, --before=DATE   Show only dates before DATE 
-                          [default: 2199-12-31]
-      -c, --config=PATH   Take run-time options from config file
-                          [default: /home/jeffs/.jdoomrc]
-      -n, --num-dates=N   Number of questions in the quiz.
-                          Enter 0 for unlimited. [default: 3]
-      -u, --untimed       Do not show how long user needed to compute answer
-      -v, --verbose       Display verbose output
+Options:
+    -a, --after=DATE    Show only dates after DATE 
+                        [default: 1800-01-01]
+    -b, --before=DATE   Show only dates before DATE 
+                        [default: 2199-12-31]
+    -c, --config=PATH   Take run-time options from config file
+                        [default: /home/jeffs/.jdoomrc]
+    -n, --num-dates=N   Number of questions in the quiz.
+                        Enter 0 for unlimited. [default: 3]
+    -u, --untimed       Do not show user response times
+    -v, --verbose       Display verbose output
 
-   Created 2018 by Jefferson Smith <jefferson@smithicus.com>
+Created 2019 by fantasy author, Jefferson Smith 
+https://creativityhacker.ca
 """
 
 import os
@@ -91,14 +92,20 @@ def weekday_of_year_in_doomsday_format(somedate):
 
 def explain_doomsday_for_date(somedate):
     dday, year_explanation = doomsday_for_year(somedate)
-    print("  Doomsday for the year was: %s = %d" % (year_explanation, dday))
-    print("  Anchor date for the month is: %d" % anchor_date_for_month(somedate))
-    print("  Anchor offset for that monthday is: %d" % doomsday_offset_for_day(somedate))
+    anchor = anchor_date_for_month(somedate)
+    dstr = somedate.strftime("%b") + " " + str(anchor) 
+    offset = doomsday_offset_for_day(somedate)
+    print("  Doomsday for the year was: %s = %d" % (year_explanation, 
+        dday))
+    print("  Anchor date for the month is: %s" % dstr)
+    print("  Given date is offset from anchor day by: %d" % offset)
+    print("  So anchor date is always a Doomsday (= %d) offset by %d = %d" % (dday, offset, (offset+dday) % 7))
 
 
 def run_quiz_loop(after_date, before_date, num):
     print("Enter 'q' to quit.\n")
-    print("Using 0 for Sunday, 1 for Monday, etc., enter the day of the week for each date.")
+    print("Compute the day of the week for each givendate.")
+    print("Use 0 for Sunday, 1 for Monday, etc.\n")
 
     after = after_date.toordinal()
     before = before_date.toordinal()
@@ -130,14 +137,14 @@ def run_quiz_loop(after_date, before_date, num):
         answertime = time.time()
         if answer == weekday:
             if not args['--untimed']:
-                print("Correct.\n(%0.1f sec)"%(answertime-showtime))
+                print("Correct (%0.1f sec)"%(answertime-showtime))
             else:
-                print("Correct.")
+                print("Correct")
         else:
             if not args['--untimed']:
-                print("Wrong.\n(in %0.1f sec)"%(answertime-showtime))
+                print("Wrong (%0.1f sec)"%(answertime-showtime))
             else:
-                print("Wrong.")
+                print("Wrong")
             print("  The correct answer is %d" % weekday)
             explain_doomsday_for_date(target_date)
         print('')
