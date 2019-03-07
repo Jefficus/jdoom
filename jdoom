@@ -30,7 +30,6 @@ import os
 import time
 import random
 import datetime
-#from docopt import docopt
 from docoptcfg import docoptcfg
 
 # process command line args

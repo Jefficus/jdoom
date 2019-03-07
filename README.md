@@ -39,11 +39,16 @@
     Correct
     (11.9 sec)
 
-
-	Sep 19 1872: 1
+	1872-09-19: 1
 	Wrong (3.0 sec)
 		The correct answer is 4
 		Doomsday for the year was: 5 6 0 0 = 4
 		Anchor date for the month is: Sep 5
 		Given date is offset from anchor day by: 0
 		So anchor date is always a Doomsday (= 4) offset by 0 = 4
+
+Notice that the date prompts are not always in the same format. 
+
+##Dependencies
+
+    Requires the *docoptcfg* package that provides easy arg-parsing, up-to-date --help text, local .config files, and environment variable overrides. All for the price of writing a proper help text.
