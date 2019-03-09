@@ -9,9 +9,9 @@ A simple command-line Python script to generate random dates and test you on you
         jdoom -V | --version
 
     Options:
-        -a, --after=DATE    Show only dates after DATE 
+        -a, --after=DATE    Show only dates on or after DATE 
                             [default: 1800-01-01]
-        -b, --before=DATE   Show only dates before DATE 
+        -b, --before=DATE   Show only dates on or before DATE 
                             [default: 2199-12-31]
         -c, --config=PATH   Take run-time options from config file
                             [default: $HOME/.jdoomrc]
@@ -20,10 +20,10 @@ A simple command-line Python script to generate random dates and test you on you
         -u, --untimed       Do not show how long user needed to compute answer
         -v, --verbose       Display verbose output
 
-    Created 2019 by fantasy author [Jefferson Smith](https://creativityhacker.ca)
+Created 2019 by fantasy author [Jefferson Smith](https://creativityhacker.ca)
 
 ## Caveat
-This is not a tutorial. You'll have to learn the Doomsday algorithm [somewhere else](https://www.timeanddate.com/date/doomsday-weekday.html). That's too much like work. We're just here to do the fun part.
+This is not a tutorial. You'll have to learn the Doomsday algorithm [somewhere else](https://www.timeanddate.com/date/doomsday-weekday.html). We're just here to do the fun part.
 
 ## Example Session
     Enter 'q' to quit.

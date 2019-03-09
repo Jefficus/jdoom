@@ -28,7 +28,7 @@ https://creativityhacker.ca
 
 import os
 import time
-import random
+import random as rnd
 import datetime
 from docoptcfg import docoptcfg
 
@@ -98,7 +98,7 @@ def explain_doomsday_for_date(somedate):
         dday))
     print("  Anchor date for the month is: %s" % dstr)
     print("  Given date is offset from anchor day by: %d" % offset)
-    print("  So anchor date is always a Doomsday (= %d) offset by %d = %d" % (dday, offset, (offset+dday) % 7))
+    print("  So anchor date (always a Doomsday) = %d, offset by %d = %d" % (dday, offset, (offset+dday) % 7))
 
 
 def run_quiz_loop(after_date, before_date, num):
@@ -110,21 +110,24 @@ def run_quiz_loop(after_date, before_date, num):
     before = before_date.toordinal()
 
     i = 0
+    tries = 0
+    total_seconds = 0
     while num == 0 or i < num:
         i += 1
-        target_date = datetime.date.fromordinal(random.randint(after, before))
+        target_date = datetime.date.fromordinal(rnd.randint(after, 
+                                                            before))
         weekday =  weekday_of_year_in_doomsday_format(target_date)
         showtime = time.time()
         answer = None
         try:
             #dstr = target_date.isoformat()[:10]
-            dstr = target_date.strftime( random.choice(date_formats) )
+            dstr = target_date.strftime(rnd.choice(date_formats))
             response = input("%s: " % dstr)
-            # I like to enter each of the components of the calculation,
-            # followed by the final answer, so that I can see my thinking on
-            # the previous line when I make a mistake. Consequently, this line
-            # takes all that input and then ignores everything but the last
-            # component.
+            # I like to enter each component of the calculation,
+            # followed by the final answer, so I can look back at my 
+            # thinking when I make a mistake. Consequently, this input
+            # takes an arbitrary sequence of numbers and ignores 
+            # everything but the last component.
             answer = response.split()[-1]
         except:
             pass
@@ -134,14 +137,19 @@ def run_quiz_loop(after_date, before_date, num):
             exit()
         answer = int(answer)
         answertime = time.time()
+        dur = answertime - showtime
+        total_seconds += dur
+        tries += 1
         if answer == weekday:
             if not args['--untimed']:
-                print("Correct (%0.1f sec)"%(answertime-showtime))
+                print("Correct (%0.1f sec)"%(dur))
+                print("        (%0.1f sec avg)"%(total_seconds/tries))
             else:
                 print("Correct")
         else:
             if not args['--untimed']:
-                print("Wrong (%0.1f sec)"%(answertime-showtime))
+                print("Wrong (%0.1f sec)"%(dur))
+                print("      (%0.1f sec avg)"%(total_seconds/tries))
             else:
                 print("Wrong")
             print("  The correct answer is %d" % weekday)
